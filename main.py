@@ -8,12 +8,13 @@ if __name__ == "__main__":
     if ver != True:
         res = Message.askyesno(title="Install Update", message="A new update has been found would you like to update to the latest version?")
 
-        Message.showmsg("WARNING", "D0 NOT CANCEL OR CLOSE THE COMMAND PROMPT WHILE UPDATING")
-        if res:
-            uninstall = run_uninstaller()
-            if uninstall == True:
-                uninstall_old_files()
-                Message.showmsg("Update", "Updated successfully")
+        continue_with_update = Message.askyesno("WARNING", "D0 NOT CANCEL OR CLOSE THE COMMAND PROMPT WHILE UPDATING [CHOOSE YES IF YOU UNDERSTAND]")
+        if continue_with_update:
+            if res:
+                uninstall = run_uninstaller()
+                if uninstall == True:
+                    uninstall_old_files()
+                    Message.showmsg("Update", "Updated successfully")
 
     else:
         app = App()
