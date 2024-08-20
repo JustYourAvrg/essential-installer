@@ -238,7 +238,7 @@ class App:
 
             for index, mod_folder in enumerate(os.listdir(data[frame])):
                 mod_btn = ctk.CTkButton(self.mods_frame, text=mod_folder, fg_color="#1c1c1c", height=40, hover_color="#141414", corner_radius=5)
-                mod_btn.configure(command=lambda btn=mod_btn, dir=mod_folder, name=mod_folder, custom=True: self.select_mod(btn, dir, name, custom))
+                mod_btn.configure(command=lambda btn=mod_btn, dir=mod_folder, name=frame, custom=True: self.select_mod(btn, dir, name, custom))
                 mod_btn.grid(row=index, column=0, padx=5, pady=3, sticky='nsew')
                 mod_btn.grid_propagate(0)
 
@@ -270,7 +270,8 @@ class App:
 
         self.prev_mod_btn = btn
         if custom == True:
-            self.dir = data
+            self.dir = data[name]
+            self.dir = f"{self.dir}\\{dir}"
         if custom == "Curseforge":
             self.dir = f"{self.curseforge_instances_path}\\{dir}"
         if custom == "FTB App":
